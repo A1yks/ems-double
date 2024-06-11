@@ -25,6 +25,10 @@ const config: webpack.Configuration = {
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+            },
         ],
     },
     plugins: [

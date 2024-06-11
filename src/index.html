@@ -5,5 +5,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>EMS Double</title>
     </head>
-    <body></body>
+    <body>
+        <div class="container">
+            <div class="banner">
+                <div class="banner__content banner__section">
+                    <div class="banner__info">
+                        <h1 class="banner__title">Демо-версия</h1>
+                        <p class="banner__description">
+                            За 18 лет деятельности было реализовано более 500 крупных, а так же, не менее 2500 средних и малых проектов. Используя
+                            знания и накопленный опыт мы можем предложить
+                        </p>
+                    </div>
+                    <button class="banner__button">
+                        <span>Попробовать бесплатно</span>
+                        <img src="./images/arrow.svg" alt="" />
+                    </button>
+                </div>
+                <div class="banner__section banner__img-section">
+                    <img
+                        src="./images/computer-sm.jpg"
+                        srcset="
+                            ./images/computer-sm.jpg 327w,
+                            ./images/computer-md.jpg 720w,
+                            ./images/computer-lg.jpg 680w,
+                            ./images/computer-xl.jpg 910w
+                        "
+                        sizes="(min-width: 1880px) 910px, (min-width: 992px) 680px, (min-width: 576px) 720px, 327px"
+                        alt="computer"
+                        class="banner__image"
+                    />
+                    <img src="./images/computer-lg.jpg" alt="computer" class="banner__image banner__image-md" />
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
