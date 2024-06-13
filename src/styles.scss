@@ -7,8 +7,11 @@
 :root {
     --title-color: #1f4284;
     --description-color: #727272;
+    --checkbox-color: #323232;
     --banner-bg: #f0f4fc;
     --button-bg: #244c98;
+    --button-hover-bg: #1f4284;
+    --input-bg: #d7e2f6;
 }
 
 @font-face {
@@ -33,6 +36,82 @@ body {
     font-family: Manrope, sans-serif;
     display: flex;
     justify-content: center;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.button {
+    width: 100%;
+    min-height: 56px;
+    padding: 10px;
+    padding-left: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 160%;
+    gap: 19px;
+    background: var(--button-bg);
+    font-family: Manrope, sans-serif;
+
+    &:not(&--outlined, &--text):hover {
+        background: var(--button-hover-bg);
+    }
+
+    &--outlined {
+        background: none;
+        color: var(--button-bg);
+        border: 1px solid var(--button-bg);
+    }
+
+    &--text {
+        background: none;
+        color: var(--button-bg);
+    }
+
+    @media screen and (min-width: 992px) {
+        font-size: 18px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        height: 68px;
+        padding: 12px;
+        padding-left: 24px;
+    }
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--checkbox-color);
+    position: relative;
+    border-radius: 3px;
+
+    &__check-mark {
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        width: 22px;
+        height: 22px;
+        display: none;
+        fill: blue;
+        z-index: 1;
+    }
+
+    input[type='checkbox'] {
+        display: none;
+
+        &:checked + .checkbox__check-mark {
+            display: block;
+            border: none;
+        }
+    }
 }
 
 .container {
@@ -77,23 +156,7 @@ body {
     }
 
     &__button {
-        width: 100%;
-        min-height: 56px;
-        padding: 10px;
-        padding-left: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #fff;
         border-radius: 60px;
-        border: none;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 160%;
-        gap: 19px;
-        background: var(--button-bg);
-        font-family: Manrope, sans-serif;
 
         img {
             height: 100%;
@@ -115,9 +178,154 @@ body {
         display: block;
         object-fit: cover;
     }
+}
 
-    &__image-md {
+.dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    animation: fadeIn 0.25s;
+
+    &--hidden {
         display: none;
+    }
+
+    &.animate-out {
+        animation-name: fadeOut;
+
+        .dialog__content-wrapper {
+            animation-name: slideOut;
+        }
+    }
+
+    &__backdrop {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    &__content-wrapper {
+        position: relative;
+        height: 100%;
+        background: var(--banner-bg);
+        max-width: 580px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        overflow: auto;
+        animation: slideIn 0.25s;
+        z-index: 100;
+    }
+
+    &__close-btn {
+        background: url(images/cross.svg) no-repeat center center;
+        width: 52px;
+        height: 52px;
+        padding: 14px;
+        background-color: #fff;
+        border-radius: 10px;
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+}
+
+.auth-form {
+    &__title {
+        font-size: 24px;
+        margin-bottom: 18px;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__input {
+        border: none;
+        width: 100%;
+        height: 73px;
+        background: var(--input-bg);
+        font-weight: 500;
+        font-family: Manrope, sans-serif;
+        padding: 24px;
+        color: var(--title-color);
+        border-radius: 10px;
+        font-size: 18px;
+        outline: none;
+
+        &::placeholder {
+            color: inherit;
+        }
+    }
+
+    &__checkbox-wrapper {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 18px;
+        color: var(--checkbox-color);
+        margin: 24px 0;
+    }
+
+    &__restore-btn {
+        padding: 0;
+        width: auto;
+        min-height: initial;
+        font-size: 20px;
+    }
+
+    &__main-btns {
+        margin-top: 36px;
+
+        button {
+            font-size: 18px;
+            justify-content: center;
+        }
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(0, -40px);
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(0, -40px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 
@@ -147,6 +355,16 @@ body {
             width: auto;
         }
     }
+
+    .dialog {
+        padding: 20px;
+
+        &__content-wrapper {
+            border-radius: 10px;
+            height: auto;
+            max-height: 100%;
+        }
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -165,18 +383,6 @@ body {
 
         &__description {
             font-size: 17px;
-        }
-
-        &__button {
-            font-size: 18px;
-        }
-
-        &__image {
-            display: none;
-        }
-
-        &__image-md {
-            display: block;
         }
     }
 }
@@ -201,9 +407,6 @@ body {
 
         &__button {
             width: 341px;
-            height: 68px;
-            padding: 12px;
-            padding-left: 24px;
         }
     }
 }
@@ -212,14 +415,6 @@ body {
     .banner {
         &__title {
             font-size: 30px;
-        }
-
-        &__image {
-            display: block;
-        }
-
-        &__image-md {
-            display: none;
         }
     }
 }

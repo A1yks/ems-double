@@ -9,6 +9,7 @@ const config: webpack.Configuration = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'script.js',
+        assetModuleFilename: 'assets/[name].[ext]',
         clean: true,
     },
     resolve: {
@@ -27,6 +28,10 @@ const config: webpack.Configuration = {
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             },
         ],

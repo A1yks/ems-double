@@ -16,26 +16,27 @@
                             знания и накопленный опыт мы можем предложить
                         </p>
                     </div>
-                    <button class="banner__button">
+                    <button class="button banner__button">
                         <span>Попробовать бесплатно</span>
-                        <img src="./images/arrow.svg" alt="" />
+                        <img src="<%=require('./images/arrow.svg')%>" alt="" />
                     </button>
                 </div>
                 <div class="banner__section banner__img-section">
-                    <img
-                        src="./images/computer-sm.jpg"
-                        srcset="
-                            ./images/computer-sm.jpg 327w,
-                            ./images/computer-md.jpg 720w,
-                            ./images/computer-lg.jpg 680w,
-                            ./images/computer-xl.jpg 910w
-                        "
-                        sizes="(min-width: 1880px) 910px, (min-width: 992px) 680px, (min-width: 576px) 720px, 327px"
-                        alt="computer"
-                        class="banner__image"
-                    />
-                    <img src="./images/computer-lg.jpg" alt="computer" class="banner__image banner__image-md" />
+                    <picture>
+                        <source srcset="<%=require('./images/computer-xl.jpg')%>" media="(min-width: 1880px)" />
+                        <source srcset="<%=require('./images/computer-lg.jpg')%>" media="(min-width: 992px)" />
+                        <source srcset="<%=require('./images/computer-md.jpg')%>" media="(min-width: 576px)" />
+                        <img src="<%=require('./images/computer-sm.jpg')%>" alt="computer" class="banner__image" />
+                    </picture>
                 </div>
+            </div>
+        </div>
+
+        <div class="dialog dialog--hidden auth-dialog">
+            <div class="dialog__backdrop"></div>
+            <div class="dialog__content-wrapper">
+                <button class="dialog__close-btn"></button>
+                <div class="dialog__content"></div>
             </div>
         </div>
     </body>
